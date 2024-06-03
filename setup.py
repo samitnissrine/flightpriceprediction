@@ -20,5 +20,6 @@ setup(
     author='samit nissrine',
     author_email='nissrine.sam@gmail.com',
     install_requires=["scikit-learn","pandas","numpy"],
-    packages=find_packages()
+    #packages=find_packages()
+    packages=find_packages(include=['', 'src*', 'tests*']),
 )
