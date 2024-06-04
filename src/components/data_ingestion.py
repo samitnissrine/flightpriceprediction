@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from pathlib import Path
 
+
 @dataclass
 
 class DataIngestionConfig:
@@ -54,7 +55,9 @@ class DataIngestion:
             raise customexception(e,sys)
 
 
-if __name__=="__main__":
-    obj=DataIngestion()
+#if __name__=="__main__":
+ #   obj=DataIngestion()
 
-    obj.initiate_data_ingestion()
+  #  obj.initiate_data_ingestion()
+
+
