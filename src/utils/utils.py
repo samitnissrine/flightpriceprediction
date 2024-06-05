@@ -110,7 +110,7 @@ def convert_stops_to_numeric(df, column_name):
 
 
 
-def categorize_time(hour):
+'''def categorize_time(hour):
     # Split the string using ":" as the delimiter
     hours, minutes = map(int, hour.split(':'))
     # Extract the hour part as an integer
@@ -128,6 +128,29 @@ def categorize_time(hour):
     else:
         return "Late Night"
 
+'''
+def categorize_time_alternative(time_str):
+    """
+    Categorizes a time string into one of several time periods using different intervals.
+    
+    Args:
+    time_str (str): Time in the format 'HH:MM'.
+    
+    Returns:
+    str: Time category.
+    """
+    hour = int(time_str.split(':')[0])
+    
+    if 0 <= hour < 6:
+        return 'Late Night'
+    elif 6 <= hour < 12:
+        return 'Morning'
+    elif 12 <= hour < 18:
+        return 'Afternoon'
+    elif 18 <= hour < 21:
+        return 'Evening'
+    else:
+        return 'Night'
 
 
 
@@ -140,7 +163,7 @@ def process_data(data):
     data = convert_stops_to_numeric(data, 'stops')
     data['arrival time'] = data['arrival time'].apply(clean_arrival_time)
     data['arrival time'] = data['arrival time'].apply(categorize_time)
-    data['depature time'] = data['depature time'].apply(categorize_time)
+    data['departure time'] = data['departure time'].apply(categorize_time)
     data['Date'] = data['Date'].str.strip()
     data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
     data['Price'] = data['Price'].astype(float)
@@ -151,7 +174,7 @@ def process_data(data):
     data['Day of Week'] = data['Date'].dt.dayofweek
 
     le = LabelEncoder()
-    ordinal_variables = ['Airline', 'class', 'depature time', 'arrival time']
+    ordinal_variables = ['Airline', 'class', 'departure time', 'arrival time']
     data[ordinal_variables] = data[ordinal_variables].apply(lambda col: le.fit_transform(col))
     data = pd.get_dummies(data, columns=['Source', 'Destination'])
 
@@ -164,3 +187,66 @@ def process_data(data):
     data[bool_columns] = data[bool_columns].astype(int)
 
     return data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+def transforming_features(data):
+    data['Duration'] = data['Duration'].apply(convert_to_minutes)
+    data = convert_stops_to_numeric(data, 'stops')
+    data['arrival time'] = data['arrival time'].apply(clean_arrival_time)
+    #data['arrival time'] = data['arrival time'].apply(categorize_time)
+    #data['departure time'] = data['departure time'].apply(categorize_time)
+    data['arrival time'] = data['arrival time'].apply(categorize_time_alternative)
+    data['departure time'] = data['departure time'].apply(categorize_time_alternative)
+    data['Date'] = data['Date'].str.strip()
+    data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
+    # Calculate the days left
+    search_date = pd.to_datetime('2024-05-28')
+    data['Days Left'] = (data['Date'] - search_date).dt.days
+    data['Day of Week'] = data['Date'].dt.dayofweek
+
+    le = LabelEncoder()
+    ordinal_variables = ['Airline', 'Class', 'departure time', 'arrival time']
+    data[ordinal_variables] = data[ordinal_variables].apply(lambda col: le.fit_transform(col))
+    
+    data = pd.get_dummies(data, columns=['Source', 'Destination'])
+
+    data['Duration'] = np.log(data['Duration'])
+    data.drop(columns="Date", inplace=True)
+        # Ensure all possible one-hot encoded columns exist
+    expected_columns = [
+        'Source_CMN', 'Source_IST', 'Source_LAX', 'Source_NRT', 'Source_PAR', 
+        'Destination_CMN', 'Destination_IST', 'Destination_LAX', 'Destination_NRT', 'Destination_PAR'
+    ]
+    
+    # Add missing columns if any with 0s
+    for col in expected_columns:
+        if col not in data.columns:
+            data[col] = 0
+
+    # Ensure the columns are in the same order as expected
+    data = data.reindex(columns=expected_columns, fill_value=0)
+
+    data[expected_columns] = data[expected_columns].astype(int)
+    
+
+    return data
+
