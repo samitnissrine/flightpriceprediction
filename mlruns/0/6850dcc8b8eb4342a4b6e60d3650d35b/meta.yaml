@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Zbook/Desktop/myproject/flightpriceprediction/mlruns/0/6850dcc8b8eb4342a4b6e60d3650d35b/artifacts
+end_time: 1717540139567
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6850dcc8b8eb4342a4b6e60d3650d35b
+run_name: delightful-tern-914
+run_uuid: 6850dcc8b8eb4342a4b6e60d3650d35b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717540133253
+status: 3
+tags: []
+user_id: Zbook

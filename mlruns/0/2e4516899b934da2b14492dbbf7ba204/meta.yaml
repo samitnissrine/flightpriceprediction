@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Zbook/Desktop/myproject/flightpriceprediction/mlruns/0/2e4516899b934da2b14492dbbf7ba204/artifacts
+end_time: 1717540056960
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2e4516899b934da2b14492dbbf7ba204
+run_name: redolent-grouse-358
+run_uuid: 2e4516899b934da2b14492dbbf7ba204
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717540048836
+status: 3
+tags: []
+user_id: Zbook

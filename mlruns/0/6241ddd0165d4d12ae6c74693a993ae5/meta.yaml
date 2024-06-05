@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Zbook/Desktop/myproject/flightpriceprediction/mlruns/0/6241ddd0165d4d12ae6c74693a993ae5/artifacts
+end_time: 1717538902757
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6241ddd0165d4d12ae6c74693a993ae5
+run_name: bedecked-bass-421
+run_uuid: 6241ddd0165d4d12ae6c74693a993ae5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717538889830
+status: 3
+tags: []
+user_id: Zbook
