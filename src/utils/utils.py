@@ -110,7 +110,7 @@ def convert_stops_to_numeric(df, column_name):
 
 
 
-'''def categorize_time(hour):
+def categorize_time(hour):
     # Split the string using ":" as the delimiter
     hours, minutes = map(int, hour.split(':'))
     # Extract the hour part as an integer
@@ -128,7 +128,7 @@ def convert_stops_to_numeric(df, column_name):
     else:
         return "Late Night"
 
-'''
+
 def categorize_time_alternative(time_str):
     """
     Categorizes a time string into one of several time periods using different intervals.
