@@ -1,0 +1,75 @@
+<html>
+<body>
+<form action="{{url_for('predict_datapoint')}}" method="POST">
+    <div class="form-group">
+        <label for="departure time">departure time:</label>
+        <input type="text" id="departure time" name="departure time" placeholder="Enter departure time name (time)">
+    </div>
+
+    <div class="form-group">
+        <label for="arrival time">arrival time:</label>
+        <input type="text" id="arrival time" name="arrival time" placeholder="Enter arrival time (time)">
+    </div>
+
+    <div class="form-group">  
+        <label for="Duration">Duration:</label>
+        <input type="text" id="Duration" name="Duration" placeholder="Enter duration value (time)">
+    </div>
+    
+    <div class="form-group">
+        <label for="Date">Date:</label>
+        <input type="text" id="Date" name="Date" placeholder="Enter date (date)">
+    </div>
+  
+    <div class="form-group">
+        <label for="Airline">Airline:</label>
+        <input type="text" id="Airline" name="Airline" placeholder="Enterairline (name)">
+    </div>
+         
+  
+<div class="form-group">
+  <label for="stops">stops:</label>
+  <select id="stops" name="stops">
+    <option value="direct">direct</option>
+    <option value="1 stop">1 stop</option>
+    <option value="2 stops">2 stops</option>
+    <option value="3 stops">3 stops</option>
+  </select>
+</div>
+  
+<div class="form-group">
+  <label for="class">Class:</label>
+  <select id="class" name="Class">
+    <option value="economy">economy</option>
+    <option value="business">business</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <label for="Source">Source:</label>
+  <select id="Source" name="Source">
+    <option value="LAX">LAX</option>
+    <option value="IST">IST</option>
+    <option value="CMN">CMN</option>
+    <option value="PAR">PAR</option>
+    <option value="NRT">NRT</option>
+  </select>
+</div>
+
+<div class="form-group">
+    <label for="Destination">Destination:</label>
+    <select id="Destination" name="Destination">
+      <option value="LAX">LAX</option>
+      <option value="IST">IST</option>
+      <option value="CMN">CMN</option>
+      <option value="PAR">PAR</option>
+      <option value="NRT">NRT</option>
+    </select>
+  </div>
+
+
+<div style="clear:both;"></div>
+  <input type="submit" value="Submit">
+</form>
+</body>
+</html>
