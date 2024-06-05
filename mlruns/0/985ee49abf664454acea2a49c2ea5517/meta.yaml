@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Zbook/Desktop/myproject/flightpriceprediction/mlruns/0/985ee49abf664454acea2a49c2ea5517/artifacts
+end_time: 1717561307939
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 985ee49abf664454acea2a49c2ea5517
+run_name: kindly-penguin-398
+run_uuid: 985ee49abf664454acea2a49c2ea5517
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1717561301735
+status: 3
+tags: []
+user_id: Zbook
