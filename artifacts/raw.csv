@@ -1,4 +1,4 @@
-Airline,Source,Destination,Duration,stops,class,depature time,arrival time,Price,Date
+Airline,Source,Destination,Duration,stops,class,departure time,arrival time,Price,Date
 TUI Fly Belgium,CMN,PAR,3h 25m,direct,economy,07:20,11:45,AED 563,2024-05-29
 Royal Air Maroc,CMN,PAR,2h 55m,direct,economy,13:25,17:20,AED 977,2024-05-29
 Royal Air Maroc,CMN,PAR,2h 50m,direct,economy,18:35,22:25,"AED 1,102 ",2024-05-29 
