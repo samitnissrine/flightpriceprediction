@@ -7,15 +7,16 @@ from airflow.operators.python import PythonOperator
 from src.DimondPricePrediction.pipelines.training_pipeline import TrainingPipeline
 
 training_pipeline=TrainingPipeline()
+morocco_tz = pendulum.timezone('Africa/Casablanca')
 
 with DAG(
-    "gemstone_training_pipeline",
+    "flightprice_training_pipeline",
     default_args={"retries": 2},
     description="it is my training pipeline",
     schedule="@daily",# here you can test based on hour or mints but make sure here you container is up and running
-    start_date=pendulum.datetime(2024, 1, 17, tz="UTC"),
+    start_date=pendulum.datetime(2024, 1, 17, tz=morocco_tz),
     catchup=False,
-    tags=["machine_learning ","classification","gemstone"],
+    tags=["machine_learning ","regression","flight"],
 ) as dag:
     
     dag.doc_md = __doc__
@@ -40,6 +41,10 @@ with DAG(
         train_arr=np.array(data_transformation_artifact["train_arr"])
         test_arr=np.array(data_transformation_artifact["test_arr"])
         training_pipeline.start_model_training(train_arr,test_arr)
+
+
+
+    ############## i need a cloud account to be able to push so the last task wont be executed
     
     ## you have to config azure blob
     def push_data_to_azureblob(**kwargs):
@@ -90,5 +95,5 @@ with DAG(
         python_callable=push_data_to_s3
         )
 
-
+## last task not executed because i need a cloud account
 data_ingestion_task >> data_transform_task >> model_trainer_task >> push_data_to_s3_task
