@@ -4,7 +4,7 @@ from textwrap import dedent
 import pendulum
 from airflow import DAG
 from airflow.operators.python import PythonOperator
-from src.DimondPricePrediction.pipelines.training_pipeline import TrainingPipeline
+from src.pipelines.training_pipeline import TrainingPipeline
 
 training_pipeline=TrainingPipeline()
 morocco_tz = pendulum.timezone('Africa/Casablanca')
