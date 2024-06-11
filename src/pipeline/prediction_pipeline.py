@@ -31,9 +31,8 @@ class CustomData:
                  date: str,
                  airline: str,
                  stops: str,
-                 flight_class: str,
-                 source: str,
-                 destination: str):
+                 flight_class: str):
+
         
         self.departure_time = departure_time
         self.arrival_time = arrival_time
@@ -42,8 +41,6 @@ class CustomData:
         self.airline = airline
         self.stops = stops
         self.flight_class = flight_class
-        self.source = source
-        self.destination = destination
 
     def get_data_as_dataframe(self):
         try:
@@ -54,9 +51,7 @@ class CustomData:
                 'Date': [self.date],
                 'Airline': [self.airline],
                 'stops': [self.stops],
-                'Class': [self.flight_class],
-                'Source': [self.source],
-                'Destination': [self.destination]
+                'Class': [self.flight_class]
             }
             df = pd.DataFrame(custom_data_input_dict)
             logging.info('Dataframe Gathered')

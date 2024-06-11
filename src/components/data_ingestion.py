@@ -8,7 +8,6 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from pathlib import Path
 from datetime import date
-
 import requests as rq
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -21,6 +20,28 @@ from selenium.common.exceptions import TimeoutException
 from time import sleep
 import lxml
 from lxml import html
+from datetime import date
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def click_show_more(driver):
     try:
@@ -101,8 +122,8 @@ def get_dep_time(soup):
     deps=[]
     dep_div=soup.find_all('div',class_='vmXl vmXl-mod-variant-large')
     for d in dep_div:
-        depature=d.find_all('span')
-        deps.append(depature[0].text)
+        departure=d.find_all('span')
+        deps.append(departure[0].text)
     return deps
 #get_arrival_time
 def get_arr_time(soup):
@@ -120,7 +141,7 @@ def get_arr_time(soup):
 sources=['LAX']
 destinations=['PAR']
 classes=['economy','business']
-current_date = date.today()
+departure_date=['2024-12-20']  ### for example we want to track the flight that has this departure date and gather historical data 
 
 
 
@@ -139,17 +160,18 @@ class DataIngestion:
 
     def initiate_data_ingestion(self):
         logging.info("data ingestion started")
+        logging.info("scrapping data started")
         try:
-            df=pd.DataFrame(columns=["Airline", "Source", "Destination","Duration","stops","class","depature time","arrival time", "Price","Date"])
-            for k in range(len(current_date)): #replace testdate with dates_1 that is a list of our wanted dates
+            df=pd.DataFrame(columns=["Airline", "Source", "Destination","Duration","stops","class","departure time","arrival time", "Price","Date"])
+            for k in range(len(departure_date)): #replace testdate with dates_1 that is a list of our wanted dates
                 for j in range(len(classes)):    
                     for i in range(len(sources)): 
                         for l in range(len(destinations)):
                             if sources[i]==destinations[l]:
                                 continue
                             driver = webdriver.Edge()
-                            kayak=f"https://www.kayak.ae/flights/{sources[i]}-{destinations[l]}/{testdate[k]}/{classes[j]}?sort=bestflight_a"
-                            print(Dates_1[k])
+                            kayak=f"https://www.kayak.ae/flights/{sources[i]}-{destinations[l]}/{departure_date[k]}/{classes[j]}?sort=bestflight_a"
+                            print(departure_date[k])
                             print(sources[i])
                             print(destinations[l])
                             print(classes[j])
@@ -176,31 +198,40 @@ class DataIngestion:
                                             'class' : classes[j],
                                             'Source':sources[i],
                                             'Destination': destinations[l],
-                                            'depature time' : dep_time ,
+                                            'departure time' : dep_time ,
                                             'arrival time' : arr_time,
                                             'Price' : prices,
-                                            'Date' : Dates_1[k]})])
+                                            'Date' : departure_date[k]})])
 
 
                             df = df.replace('\n','', regex=True)
 
                             print(f"Succesfully saved {sources[i]} => {destinations[l]} route  ")
                             driver.quit()
-            df.to_csv('../data/airlines_dataset.csv', index=False, mode='a', header=False)
+            current_date = date.today()
+            df['search_date'] = current_date
+            print(df)
+            file_exists = os.path.isfile('mydata/forcasting_data.csv')
+
+            df.to_csv('mydata/forcasting_data.csv', index=False, mode='a', header=not file_exists)
+
             driver.quit()
 
 
-
+            logging.info("scrapping data finished")
             
-            data= pd.read_csv('mydata/airlines_dataset.csv')
+            data= pd.read_csv('mydata/forcasting_data.csv')
             logging.info("reading a df")
             os.makedirs(os.path.dirname(os.path.join(self.ingestion_config.raw_data_path)),exist_ok=True)
             data.to_csv(self.ingestion_config.raw_data_path,index=False)
             logging.info(" i have saved the raw dataset in artifact folder")
             
             logging.info("here i have performed train test split")
-            
-            train_data,test_data=train_test_split(data,test_size=0.2)
+            split_index = int(len(df) * 0.8)  # Use 80% of the data for training
+
+            # Split the DataFrame into train and test sets
+            train_data = data.iloc[:split_index]
+            test_data = data.iloc[split_index:]
             logging.info("train test split completed")
             
             train_data.to_csv(self.ingestion_config.train_data_path,index=False)

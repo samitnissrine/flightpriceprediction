@@ -3,73 +3,63 @@
 <form action="{{url_for('predict_datapoint')}}" method="POST">
     <div class="form-group">
         <label for="departure time">departure time:</label>
-        <input type="text" id="departure time" name="departure time" placeholder="Enter departure time name (time)">
+        <input type="text" id="departure time" name="departure time" placeholder="xx:xx for example Enter departure time name (time)">
     </div>
 
     <div class="form-group">
         <label for="arrival time">arrival time:</label>
-        <input type="text" id="arrival time" name="arrival time" placeholder="Enter arrival time (time)">
+        <input type="text" id="arrival time" name="arrival time" placeholder="xx:xx for example Enter arrival time (time)">
     </div>
 
     <div class="form-group">  
         <label for="Duration">Duration:</label>
-        <input type="text" id="Duration" name="Duration" placeholder="Enter duration value (time)">
+        <input type="text" id="Duration" name="Duration" placeholder="xxh xxm for example Enter duration value (time)">
     </div>
     
     <div class="form-group">
         <label for="Date">Date:</label>
-        <input type="text" id="Date" name="Date" placeholder="Enter date (date)">
+        <input type="text" id="Date" name="Date" placeholder="Enter 2024-12-20 aka the flight we are tracking (date)">
+    </div>
+  
+
+
+
+    <div class="form-group">
+      <label for="Airline">Airline:</label>
+      <select id="Airline" name="Airline">
+        <option value="0">Air Tahiti Nui</option>
+        <option value="1">WestJet</option>
+        <option value="2">Air Caraïbes</option>
+        <option value="3">French Bee</option>
+        <option value="4">Delta</option>
+        <option value="5">Air France</option>
+      </select>
     </div>
   
     <div class="form-group">
-        <label for="Airline">Airline:</label>
-        <input type="text" id="Airline" name="Airline" placeholder="Enterairline (name)">
+      <label for="stops">stops:</label>
+      <select id="stops" name="stops">
+        <option value="0">direct</option>
+        <option value="1">1 stop</option>
+        <option value="2">2 stops</option>
+        <option value="3">3 stops</option>
+      </select>
     </div>
-         
-  
-<div class="form-group">
-  <label for="stops">stops:</label>
-  <select id="stops" name="stops">
-    <option value="direct">direct</option>
-    <option value="1 stop">1 stop</option>
-    <option value="2 stops">2 stops</option>
-    <option value="3 stops">3 stops</option>
-  </select>
-</div>
-  
-<div class="form-group">
-  <label for="class">Class:</label>
-  <select id="class" name="Class">
-    <option value="economy">economy</option>
-    <option value="business">business</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label for="Source">Source:</label>
-  <select id="Source" name="Source">
-    <option value="LAX">LAX</option>
-    <option value="IST">IST</option>
-    <option value="CMN">CMN</option>
-    <option value="PAR">PAR</option>
-    <option value="NRT">NRT</option>
-  </select>
-</div>
-
-<div class="form-group">
-    <label for="Destination">Destination:</label>
-    <select id="Destination" name="Destination">
-      <option value="LAX">LAX</option>
-      <option value="IST">IST</option>
-      <option value="CMN">CMN</option>
-      <option value="PAR">PAR</option>
-      <option value="NRT">NRT</option>
-    </select>
-  </div>
+      
+    <div class="form-group">
+      <label for="class">Class:</label>
+      <select id="class" name="Class">
+        <option value="0">economy</option>
+        <option value="1">business</option>
+      </select>
+    </div>
 
 
-<div style="clear:both;"></div>
-  <input type="submit" value="Submit">
-</form>
-</body>
-</html>
+
+
+
+    <div style="clear:both;"></div>
+      <input type="submit" value="Submit">
+    </form>
+    </body>
+    </html>

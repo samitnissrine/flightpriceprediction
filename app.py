@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from src.pipeline.prediction_pipeline import PredictPipeline, CustomData
 import logging
+import numpy as np
 
 app = Flask(__name__)
 app.logger.setLevel(logging.DEBUG)
@@ -22,9 +23,7 @@ def predict_datapoint():
             date=request.form.get("Date"),
             airline=request.form.get("Airline"),
             stops=request.form.get("stops"),
-            flight_class=request.form.get("Class"),
-            source=request.form.get("Source"),
-            destination=request.form.get("Destination")
+            flight_class=request.form.get("Class")
         )
         print("transforming data to dataframe...")
         final_data = data.get_data_as_dataframe()
@@ -36,6 +35,8 @@ def predict_datapoint():
         pred = predict_pipeline.predict(final_data)
 
         result = round(pred[0], 2)
+        result = np.exp(result)
+
 
         return render_template("result.html", final_result=result)
 

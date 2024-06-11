@@ -41,10 +41,6 @@ class DataTransformation:
             logging.info("test data processing started")
             test_df=process_data(test_df)
             logging.info("test data processing finished")
-            train_df['search_date'] = current_date
-            test_df['search_date'] = current_date
-            
-
             logging.info("turning the dataframes into np arrays")
             target_column_name = 'Price'
             drop_columns = [target_column_name]
@@ -52,8 +48,7 @@ class DataTransformation:
             target_feature_train_df=train_df[target_column_name]
             input_feature_test_df=test_df.drop(columns=drop_columns,axis=1)
             target_feature_test_df=test_df[target_column_name]
-            input_feature_train_df['search_date'] = current_date
-            target_feature_test_df['search_date'] = current_date
+            
             train_arr = np.c_[np.array(input_feature_train_df), np.array(target_feature_train_df)]
             test_arr = np.c_[np.array(input_feature_test_df), np.array(target_feature_test_df)]
             logging.info("finished with np arrays")

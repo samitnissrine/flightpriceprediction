@@ -10,6 +10,8 @@ from sklearn.metrics import r2_score, mean_absolute_error,mean_squared_error
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import OrdinalEncoder
 from sklearn.preprocessing import OneHotEncoder
+from datetime import date
+
 
 def save_object(file_path, obj):
     try:
@@ -63,20 +65,29 @@ def load_object(file_path):
 def extract_numeric_value(value_string):
     # Use regular expression to find digits and commas
     matches = re.findall(r'\d+', value_string.replace(',', ''))
-
     # Join the matches into a single string and convert to float
     numeric_value = float(''.join(matches))
     return numeric_value
 
-def convert_aed_to_usd(amount_in_aed):
-    amount_in_aed = extract_numeric_value(amount_in_aed)
-    amount_in_usd = amount_in_aed * 0.27
-    return amount_in_usd
+# Define the function to convert AED to USD
+def convert_aed_to_usd(amount_in_aed, exchange_rate=0.27):
+    """
+    Convert an amount from AED (United Arab Emirates Dirham) to USD (United States Dollar).
 
+    Args:
+    amount_in_aed (float): Amount in AED.
+    exchange_rate (float, optional): Exchange rate from AED to USD. Default is 0.27.
+
+    Returns:
+    float: Amount converted to USD.
+    """
+    amount_in_usd = amount_in_aed * exchange_rate
+    return amount_in_usd
+'''
 def convert_price(df):
     for index, row in df.iterrows():
         # Access individual elements using column names
-        row['Price'] = convert_aed_to_usd(row['Price'])
+        row['Price'] = convert_aed_to_usd(row['Price'])'''
 
 def clean_arrival_time(arrival_time):
     if '+' in arrival_time:
@@ -154,11 +165,11 @@ def categorize_time_alternative(time_str):
 
 
 
-
-
 #the whole process using those functions for data transforming
 def process_data(data):
-    convert_price(data)
+    data['Price'] = data['Price'].apply(extract_numeric_value)
+    data['Price'] = data['Price'].astype(float)
+    data['Price'] = data['Price'].apply(convert_aed_to_usd)
     data['Duration'] = data['Duration'].apply(convert_to_minutes)
     data = convert_stops_to_numeric(data, 'stops')
     data['arrival time'] = data['arrival time'].apply(clean_arrival_time)
@@ -167,25 +178,25 @@ def process_data(data):
     data['Date'] = data['Date'].str.strip()
     data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
     data['Price'] = data['Price'].astype(float)
-
     # Calculate the days left
-    search_date = pd.to_datetime('2024-05-28')
-    data['Days Left'] = (data['Date'] - search_date).dt.days
-    data['Day of Week'] = data['Date'].dt.dayofweek
+    #search_date = pd.to_datetime('2024-05-28')
+    data['search_date'] = pd.to_datetime(data['search_date'], format='%Y-%m-%d')
 
+    data['Days Left'] = (data['Date'] - data['search_date']).dt.days
+    #data['Day of Week'] = data['Date'].dt.dayofweek
     le = LabelEncoder()
     ordinal_variables = ['Airline', 'class', 'departure time', 'arrival time']
     data[ordinal_variables] = data[ordinal_variables].apply(lambda col: le.fit_transform(col))
-    data = pd.get_dummies(data, columns=['Source', 'Destination'])
+
+
+    dropsource = 'Source'
+    dropdest = 'Destination'
+    data = data.drop(columns=dropsource,axis=1)
+    data = data.drop(columns=dropdest,axis=1)
 
     data['Price'] = np.log(data['Price'])
-    data['Duration'] = np.log(data['Duration'])
     data.drop(columns="Date", inplace=True)
-    bool_columns = ['Source_CMN', 'Source_IST', 'Source_LAX', 'Source_NRT', 'Source_PAR', 
-                'Destination_CMN', 'Destination_IST', 'Destination_LAX', 'Destination_NRT', 'Destination_PAR']
-
-    data[bool_columns] = data[bool_columns].astype(int)
-
+    data.drop(columns="search_date", inplace=True)
     return data
 
 
@@ -209,44 +220,27 @@ def process_data(data):
 
 
 def transforming_features(data):
+    label_encoder = LabelEncoder()
     data['Duration'] = data['Duration'].apply(convert_to_minutes)
     data = convert_stops_to_numeric(data, 'stops')
     data['arrival time'] = data['arrival time'].apply(clean_arrival_time)
-    #data['arrival time'] = data['arrival time'].apply(categorize_time)
-    #data['departure time'] = data['departure time'].apply(categorize_time)
-    data['arrival time'] = data['arrival time'].apply(categorize_time_alternative)
-    data['departure time'] = data['departure time'].apply(categorize_time_alternative)
+    data['arrival time'] = data['arrival time'].apply(categorize_time)
+    data['departure time'] = data['departure time'].apply(categorize_time)
+    data['departure time'] = label_encoder.fit_transform(data['departure time'])
+    data['arrival time'] = label_encoder.fit_transform(data['arrival time'])
+    #data['arrival time'] = data['arrival time'].apply(categorize_time_alternative)
+    #data['departure time'] = data['departure time'].apply(categorize_time_alternative)
     data['Date'] = data['Date'].str.strip()
     data['Date'] = pd.to_datetime(data['Date'], format='%Y-%m-%d')
     # Calculate the days left
-    search_date = pd.to_datetime('2024-05-28')
-    data['Days Left'] = (data['Date'] - search_date).dt.days
-    data['Day of Week'] = data['Date'].dt.dayofweek
+    current_date = date.today()
+    data['search_date'] = current_date
+    data['search_date'] = pd.to_datetime(data['search_date'], format='%Y-%m-%d')
 
-    le = LabelEncoder()
-    ordinal_variables = ['Airline', 'Class', 'departure time', 'arrival time']
-    data[ordinal_variables] = data[ordinal_variables].apply(lambda col: le.fit_transform(col))
-    
-    data = pd.get_dummies(data, columns=['Source', 'Destination'])
-
-    data['Duration'] = np.log(data['Duration'])
+    data['Days Left'] = (data['Date'] - data['search_date']).dt.days
+      
     data.drop(columns="Date", inplace=True)
-        # Ensure all possible one-hot encoded columns exist
-    expected_columns = [
-        'Source_CMN', 'Source_IST', 'Source_LAX', 'Source_NRT', 'Source_PAR', 
-        'Destination_CMN', 'Destination_IST', 'Destination_LAX', 'Destination_NRT', 'Destination_PAR'
-    ]
-    
-    # Add missing columns if any with 0s
-    for col in expected_columns:
-        if col not in data.columns:
-            data[col] = 0
-
-    # Ensure the columns are in the same order as expected
-    data = data.reindex(columns=expected_columns, fill_value=0)
-
-    data[expected_columns] = data[expected_columns].astype(int)
-    
+    data.drop(columns="search_date", inplace=True)
 
     return data
 

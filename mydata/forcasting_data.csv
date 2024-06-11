@@ -1,0 +1,33 @@
+Airline,Source,Destination,Duration,stops,class,departure time,arrival time,Price,Date,search_date
+Air Tahiti Nui,LAX,PAR,10h 25m,direct,economy,11:40,07:05+1,"AED 2,053",2024-12-20,2024-06-11
+WestJet,LAX,PAR,33h 55m,1 stop,economy,17:35,12:30+2,"AED 1,556",2024-12-20,2024-06-11
+WestJet,LAX,PAR,14h 40m,1 stop,economy,12:50,12:30+1,"AED 1,952",2024-12-20,2024-06-11
+Air Caraïbes,LAX,PAR,10h 50m,direct,economy,19:45,15:35+1,"AED 4,169",2024-12-20,2024-06-11
+French Bee,LAX,PAR,10h 50m,direct,economy,19:45,15:35+1,"AED 4,140",2024-12-20,2024-06-11
+Delta,LAX,PAR,10h 45m,direct,economy,18:35,14:20+1,"AED 4,820",2024-12-20,2024-06-11
+Air France,LAX,PAR,10h 45m,direct,economy,18:35,14:20+1,"AED 4,813",2024-12-20,2024-06-11
+Delta,LAX,PAR,10h 50m,direct,economy,15:25,11:15+1,"AED 4,820",2024-12-20,2024-06-11
+Air France,LAX,PAR,10h 50m,direct,economy,15:25,11:15+1,"AED 4,813",2024-12-20,2024-06-11
+Alaska Airlines,LAX,PAR,16h 26m,1 stop,economy,10:34,12:00+1,"AED 2,643",2024-12-20,2024-06-11
+Air France,LAX,PAR,10h 45m,direct,economy,21:05,16:50+1,"AED 4,873",2024-12-20,2024-06-11
+LOT,LAX,PAR,17h 40m,1 stop,economy,16:15,18:55+1,"AED 3,542",2024-12-20,2024-06-11
+Delta,LAX,PAR,10h 45m,direct,economy,21:05,16:50+1,"AED 5,555",2024-12-20,2024-06-11
+Aer Lingus,LAX,PAR,15h 35m,1 stop,economy,20:15,20:50+1,"AED 4,077",2024-12-20,2024-06-11
+Air France,LAX,PAR,13h 15m,1 stop,economy,10:00,08:15+1,"AED 4,869",2024-12-20,2024-06-11
+KLM,LAX,PAR,13h 00m,1 stop,economy,13:45,11:45+1,"AED 4,970",2024-12-20,2024-06-11
+Air France,LAX,PAR,10h 50m,direct,business,18:30,14:20+1,"AED 15,314",2024-12-20,2024-06-11
+Sun Country Air,LAX,PAR,16h 01m,2 stops,business,10:59,12:00+1,"AED 7,150",2024-12-20,2024-06-11
+Delta,LAX,PAR,10h 45m,direct,business,18:35,14:20+1,"AED 15,360",2024-12-20,2024-06-11
+Air France,LAX,PAR,10h 50m,direct,business,15:25,11:15+1,"AED 15,314",2024-12-20,2024-06-11
+Delta,LAX,PAR,10h 50m,direct,business,15:25,11:15+1,"AED 15,360",2024-12-20,2024-06-11
+Air Tahiti Nui,LAX,PAR,10h 25m,direct,business,11:40,07:05+1,"AED 17,014",2024-12-20,2024-06-11
+SWISS,LAX,PAR,14h 40m,1 stop,business,19:10,18:50+1,"AED 13,080",2024-12-20,2024-06-11
+Air Canada,LAX,PAR,13h 30m,1 stop,business,11:55,10:25+1,"AED 14,525",2024-12-20,2024-06-11
+Lufthansa,LAX,PAR,13h 25m,1 stop,business,15:05,13:30+1,"AED 14,827",2024-12-20,2024-06-11
+Brussels Airlines,LAX,PAR,13h 10m,1 stop,business,09:15,07:25+1,"AED 14,892",2024-12-20,2024-06-11
+United Airlines,LAX,PAR,13h 25m,1 stop,business,15:05,13:30+1,"AED 14,990",2024-12-20,2024-06-11
+United Airlines,LAX,PAR,13h 30m,1 stop,business,11:55,10:25+1,"AED 14,870",2024-12-20,2024-06-11
+Air Canada,LAX,PAR,13h 30m,1 stop,business,11:55,10:25+1,"AED 14,720",2024-12-20,2024-06-11
+United Airlines,LAX,PAR,13h 25m,1 stop,business,15:05,13:30+1,"AED 14,990",2024-12-20,2024-06-11
+Air Canada,LAX,PAR,13h 30m,1 stop,business,11:55,10:25+1,"AED 14,799",2024-12-20,2024-06-11
+United Airlines,LAX,PAR,13h 40m,1 stop,business,08:15,06:55+1,"AED 14,840",2024-12-20,2024-06-11

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Zbook/Desktop/myproject/flightpriceprediction/mlruns/0/d79da3cb4bb447b4851bc6ba3e4937d5/artifacts
+end_time: 1718066508695
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d79da3cb4bb447b4851bc6ba3e4937d5
+run_name: ambitious-dove-657
+run_uuid: d79da3cb4bb447b4851bc6ba3e4937d5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718066496925
+status: 3
+tags: []
+user_id: Zbook
