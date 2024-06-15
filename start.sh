@@ -1,3 +1,3 @@
 #!bin/sh
-nohup airflow scheduler
-airflow webserver -p 9090
+nohup airflow scheduler &
+airflow webserver

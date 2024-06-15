@@ -3,7 +3,7 @@ services:
   airflow:
     build:
       context: ./
-      dockerfile: Dockerfile.airflow
+      dockerfile: dockerfile.airflow
     image: airflowimage
     container_name: flightprice-prediction-airflow
     ports:
@@ -12,7 +12,7 @@ services:
   flaskapp:
     build:
       context: ./
-      dockerfile: Dockerfile.flask
+      dockerfile: dockerfile.flask
     image: flaskimage
     container_name: flightprice-prediction-flask
     ports:

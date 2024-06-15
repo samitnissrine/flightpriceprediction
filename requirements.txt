@@ -1,12 +1,12 @@
-pandas
-scikit-learn
-numpy
-seaborn
-ipykernel
-Flask
-#this is more stable version
+beautifulsoup4==4.12.3
+lxml==5.2.2
+requests==2.31.0
+selenium==4.21.0
+flask
 mlflow==2.2.2
 dvc
+ipykernel
+xgboost
 apache-airflow
 
 -e .
