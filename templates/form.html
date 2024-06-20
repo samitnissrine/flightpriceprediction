@@ -1,65 +1,122 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Price Forecasting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 80px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+    </style>
+</head>
 <body>
-<form action="{{url_for('predict_datapoint')}}" method="POST">
-    <div class="form-group">
-        <label for="departure time">departure time:</label>
-        <input type="text" id="departure time" name="departure time" placeholder="xx:xx for example Enter departure time name (time)">
+    <div class="form-container">
+        <h2>Flight Price Forecasting</h2>
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+            <div class="form-group">
+                <label for="departure_time">Departure Time:</label>
+                <input type="text" id="departure_time" name="departure time" placeholder="e.g., 08:00">
+            </div>
+
+            <div class="form-group">
+                <label for="arrival_time">Arrival Time:</label>
+                <input type="text" id="arrival_time" name="arrival time" placeholder="e.g., 12:30">
+            </div>
+
+            <div class="form-group">  
+                <label for="duration">Duration:</label>
+                <input type="text" id="duration" name="Duration" placeholder="e.g., 5h 30m">
+            </div>
+            
+            <div class="form-group">
+                <label for="date">Date:</label>
+                <input type="text" id="date" name="Date" placeholder="e.g., 2024-12-20">
+            </div>
+
+            <div class="form-group">
+                <label for="airline">Airline:</label>
+                <select id="airline" name="Airline">
+                    <option value="0">Air Tahiti Nui</option>
+                    <option value="1">WestJet</option>
+                    <option value="2">Air Caraïbes</option>
+                    <option value="3">French Bee</option>
+                    <option value="4">Delta</option>
+                    <option value="5">Air France</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="stops">Stops:</label>
+                <select id="stops" name="stops">
+                    <option value="0">Direct</option>
+                    <option value="1">1 Stop</option>
+                    <option value="2">2 Stops</option>
+                    <option value="3">3 Stops</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="class">Class:</label>
+                <select id="class" name="Class">
+                    <option value="0">Economy</option>
+                    <option value="1">Business</option>
+                </select>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
     </div>
-
-    <div class="form-group">
-        <label for="arrival time">arrival time:</label>
-        <input type="text" id="arrival time" name="arrival time" placeholder="xx:xx for example Enter arrival time (time)">
-    </div>
-
-    <div class="form-group">  
-        <label for="Duration">Duration:</label>
-        <input type="text" id="Duration" name="Duration" placeholder="xxh xxm for example Enter duration value (time)">
-    </div>
-    
-    <div class="form-group">
-        <label for="Date">Date:</label>
-        <input type="text" id="Date" name="Date" placeholder="Enter 2024-12-20 aka the flight we are tracking (date)">
-    </div>
-  
-
-
-
-    <div class="form-group">
-      <label for="Airline">Airline:</label>
-      <select id="Airline" name="Airline">
-        <option value="0">Air Tahiti Nui</option>
-        <option value="1">WestJet</option>
-        <option value="2">Air Caraïbes</option>
-        <option value="3">French Bee</option>
-        <option value="4">Delta</option>
-        <option value="5">Air France</option>
-      </select>
-    </div>
-  
-    <div class="form-group">
-      <label for="stops">stops:</label>
-      <select id="stops" name="stops">
-        <option value="0">direct</option>
-        <option value="1">1 stop</option>
-        <option value="2">2 stops</option>
-        <option value="3">3 stops</option>
-      </select>
-    </div>
-      
-    <div class="form-group">
-      <label for="class">Class:</label>
-      <select id="class" name="Class">
-        <option value="0">economy</option>
-        <option value="1">business</option>
-      </select>
-    </div>
-
-
-
-
-
-    <div style="clear:both;"></div>
-      <input type="submit" value="Submit">
-    </form>
-    </body>
-    </html>
+</body>
+</html>

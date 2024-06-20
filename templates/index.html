@@ -1,2 +1,52 @@
-<h1>Welcome To Flight price forcasting</h1>
-<h2>Let's forcast your flight price trends!!!!</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Price Forecasting</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1f1f1f; /* Dark background color */
+            color: #e0e0e0; /* Light text color */
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background-color: #333; /* Dark container background color */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #e0e0e0; /* Light text color */
+        }
+        h2 {
+            color: #ccc; /* Lighter heading color */
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: #007bff; /* Accent color */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #0056b3; /* Darker accent color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome To Flight Price Forecasting</h1>
+        <h2>Let's forecast your flight price trends!</h2>
+        <a href="{{ url_for('predict_datapoint') }}" class="btn">Get Started</a>
+    </div>
+</body>
+</html>
