@@ -1,6 +1,6 @@
 # Flight Price Prediction
 
-This project focuses on predicting flight prices using machine learning models, which are integrated into a Flask web application using distinct pipelines for training and prediction. The project began with sourcing data from Kaggle and supplementing it through web scraping using Beautiful Soup and Selenium.
+This project focuses on predicting flight prices using machine learning models, which are integrated into a Flask web application using distinct pipelines for training and prediction. The project began with sourcing data from Kayak and supplementing it through web scraping using Beautiful Soup and Selenium.
 
 To streamline model development and deployment, we adopted modular coding practices. This allowed us to create separate pipelines for training machine learning models and predicting flight prices. These pipelines were then seamlessly integrated into a Flask web application, providing an intuitive interface for users to interact with and obtain predictions.
 
